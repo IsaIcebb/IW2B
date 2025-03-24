@@ -55,7 +55,7 @@
                 <tr>
                     <td>45</td>
                     <td>5</td>
-                    <td><img src="C:\Users\Aluno\Downloads\gojoo.jpg"></td>
+                    <td></td>
                     <td>37</td>
                     <td>49</td>
                   
@@ -80,12 +80,43 @@
                         </div>
         </tbody>
     </table>
-    <script>
-        cartelaB=[]
-        cartelaI=[]
-        cartelaN=[]
-        cartelaG=[]
-        cartelaO=[]
+    <script type="text/javascript">
+       var cartelaB=[]
+        var cartelaI=[]
+        var cartelaN=[]
+        var cartelaG=[]
+        var cartelaO=[]
+
+        function GerarArray(numeroinicial, quantidade) {
+            var retorno = []
+            for (var i = 0; i< quantidade ; i++) {
+                retorno.push(numeroinicial)
+                numeroinicial++;
+            }
+            return retorno
+        }
+        cartelaB= GerarArray(1,15);
+        console.log("Array da coluna B");
+        console.log(cartelaB);
+
+        cartelaI=GerarArray(16,15);
+        console.log("Array da coluna I");
+        console.log(cartelaI);
+
+        cartelaN=GerarArray(31,15);
+        console.log("Array da coluna N");
+        console.log(cartelaN);
+
+        cartelaG=GerarArray(46, 15);
+        console.log("Array da coluna G");
+        console.log(cartelaG);
+
+        cartelaO=GerarArray(61, 15);
+        console.log("Array da coluna O");
+        consolo.log(cartelaO);
+          
+
+        //EXERCICO PARA NOTA, FAÇA 5 ARRAYS, 1 PARA CADA LETRA DO BINGO, E DENTRO DELES COLOQUE 5 NUMEROS REFERENTES A SUA LETRA SEM REPETIR NENHUM NUMERO , TUDO DINAMICAMENTE
     </script>
 </body>
 </html>
