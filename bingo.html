@@ -29,51 +29,51 @@
 <body><div>
     <table>
         <thread>
-            <th>B</th>
-            <th>I</th>
-            <th>N</th>
-            <th>G</th>
-            <th>O</th>
+            <th id="B1"  onclick="MarcarSorteado()">B</th>
+            <th id="I1"  onclick="MarcarSorteado()">I</th>
+            <th id="N1"  onclick="MarcarSorteado()">N</th>
+            <th id="G1"  onclick="MarcarSorteado()">G</th>
+            <th id="O1"  onclick="MarcarSorteado()">O</th>
         </thread>
         <tbody>
             <tr>
-            <td>2</td>
-            <td>11</td>
-            <td>26</td>
-            <td>44</td>
-            <td>53</td>
+            <td id="B2"  onclick="MarcarSorteado()" >2</td>
+            <td id="I2"  onclick="MarcarSorteado()">11</td>
+            <td id="N2"  onclick="MarcarSorteado()">26</td>
+            <td id="G2"  onclick="MarcarSorteado()">44</td>
+            <td id="O2"  onclick="MarcarSorteado()">53</td>
           
             </tr>
             <tr>
-                <td>5</td>
-                <td>9</td>
-                <td>27</td>
-                <td>41</td>
-                <td>50</td>
+                <td id="B3"  onclick="MarcarSorteado()">5</td>
+                <td id="I3"  onclick="MarcarSorteado()">9</td>
+                <td id="N3"  onclick="MarcarSorteado()">27</td>
+                <td id="G3"  onclick="MarcarSorteado()">41</td>
+                <td id="O3"  onclick="MarcarSorteado()">50</td>
                
                 </tr>
                 <tr>
-                    <td>45</td>
-                    <td>5</td>
-                    <td></td>
-                    <td>37</td>
-                    <td>49</td>
+                    <td id="B4"  onclick="MarcarSorteado()">45</td>
+                    <td id="I4"  onclick="MarcarSorteado()">5</td>
+                    <td id="N4"  onclick="MarcarSorteado()"></td>
+                    <td id="G4"  onclick="MarcarSorteado()">37</td>
+                    <td id="O4"  onclick="MarcarSorteado()">49</td>
                   
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>11</td>
-                        <td>26</td>
-                        <td>44</td>
-                        <td>53</td>
+                        <td id="B5" onclick="MarcarSorteado()">2</td>
+                        <td id="I5" onclick="MarcarSorteado()">11</td>
+                        <td id="N5" onclick="MarcarSorteado()">26</td>
+                        <td id="G5" onclick="MarcarSorteado()">44</td>
+                        <td id="O5" onclick="MarcarSorteado()">53</td>
                        
                         </tr>
                         <tr>
-                            <td>9</td>
-                            <td>14</td>
-                            <td>30</td>
-                            <td>41</td>
-                            <td>70</td>
+                            <td  id="B6"  onclick="MarcarSorteado()" >9</td>
+                            <td  id="I6"  onclick="MarcarSorteado()">14</td>
+                            <td  id="N6"  onclick="MarcarSorteado()">30</td>
+                            <td  id="G6"  onclick="MarcarSorteado()">41</td>
+                            <td  id="O6"  onclick="MarcarSorteado()">70</td>
                            
                             </tr>
                       
@@ -81,7 +81,7 @@
         </tbody>
     </table>
     <script type="text/javascript">
-       var cartelaB=[]
+        var cartelaB=[]
         var cartelaI=[]
         var cartelaN=[]
         var cartelaG=[]
@@ -113,9 +113,78 @@
 
         cartelaO=GerarArray(61, 15);
         console.log("Array da coluna O");
-        consolo.log(cartelaO);
+        console.log(cartelaO);
           
+        var B1 = document.getElementById ("B1");
+        var I1 = document.getElementById ("I1");
+        var N1 = document.getElementById ("N1");
+        var G1 = document.getElementById ("G1");
+        var O1 = document.getElementById ("O1");
+        console.log(B1);
+        console.log(I1);
+        console.log(N1);
+        console.log(G1);
+        console.log(O1);
 
+        var B2 = document.getElementById ("B2");
+        var I2 = document.getElementById ("I2");
+        var N2 = document.getElementById ("N2");
+        var G2 = document.getElementById ("G2");
+        var O2 = document.getElementById ("O2");
+        console.log(B2);
+        console.log(I2);
+        console.log(N2);
+        console.log(G2);
+        console.log(O2);
+
+        var B3 = document.getElementById ("B3");
+        var I3 = document.getElementById ("I3");
+        var N3 = document.getElementById ("N3");
+        var G3 = document.getElementById ("G3");
+        var O3 = document.getElementById ("O3");
+        console.log(B3);
+        console.log(I3);
+        console.log(N3);
+        console.log(G3);
+        console.log(O3);
+
+        var B4 = document.getElementById ("B4");
+        var I4 = document.getElementById ("I4");
+        var N4 = document.getElementById ("N4");
+        var G4 = document.getElementById ("G4");
+        var O4 = document.getElementById ("O4");
+        console.log(B4);
+        console.log(I4);
+        console.log(N4);
+        console.log(G4);
+        console.log(O4);
+
+        var B5 = document.getElementById ("B5");
+        var I5 = document.getElementById ("I5");
+        var N5 = document.getElementById ("N5");
+        var G5 = document.getElementById ("G5");
+        var O5 = document.getElementById ("O5");
+        console.log(B5);
+        console.log(I5);
+        console.log(N5);
+        console.log(G5);
+        console.log(O5);
+
+        var B5 = document.getElementById ("B5");
+        var I5 = document.getElementById ("I5");
+        var N5 = document.getElementById ("N5");
+        var G5 = document.getElementById ("G5");
+        var O5 = document.getElementById ("O5");
+        console.log(B6);
+        console.log(I6);
+        console.log(N6);
+        console.log(G6);
+        console.log(O6);
+
+
+        function MarcarSorteado(){
+            alert("deu certo o clique");
+        }
         //EXERCICO PARA NOTA, FAÇA 5 ARRAYS, 1 PARA CADA LETRA DO BINGO, E DENTRO DELES COLOQUE 5 NUMEROS REFERENTES A SUA LETRA SEM REPETIR NENHUM NUMERO , TUDO DINAMICAMENTE
     </script>
 </body>
