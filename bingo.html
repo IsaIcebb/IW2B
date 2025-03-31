@@ -29,51 +29,51 @@
 <body><div>
     <table>
         <thread>
-            <th id="B1"  onclick="MarcarSorteado()">B</th>
-            <th id="I1"  onclick="MarcarSorteado()">I</th>
-            <th id="N1"  onclick="MarcarSorteado()">N</th>
-            <th id="G1"  onclick="MarcarSorteado()">G</th>
-            <th id="O1"  onclick="MarcarSorteado()">O</th>
+            <th id="B1"  >B</th>
+            <th id="I1"  >I</th>
+            <th id="N1"  >N</th>
+            <th id="G1"  >G</th>
+            <th id="O1"  >O</th>
         </thread>
         <tbody>
             <tr>
-            <td id="B2"  onclick="MarcarSorteado()" >2</td>
-            <td id="I2"  onclick="MarcarSorteado()">11</td>
-            <td id="N2"  onclick="MarcarSorteado()">26</td>
-            <td id="G2"  onclick="MarcarSorteado()">44</td>
-            <td id="O2"  onclick="MarcarSorteado()">53</td>
+            <td id="B2"   onclick="MarcarSorteado('B1', this)" >2</td>
+            <td id="I2"   onclick="MarcarSorteado('I1', this)">11</td>
+            <td id="N2"   onclick="MarcarSorteado('N1', this)">26</td>
+            <td id="G2"   onclick="MarcarSorteado('G1', this)">44</td>
+            <td id="O2"   onclick="MarcarSorteado('O1', this)">53</td>
           
             </tr>
             <tr>
-                <td id="B3"  onclick="MarcarSorteado()">5</td>
-                <td id="I3"  onclick="MarcarSorteado()">9</td>
-                <td id="N3"  onclick="MarcarSorteado()">27</td>
-                <td id="G3"  onclick="MarcarSorteado()">41</td>
-                <td id="O3"  onclick="MarcarSorteado()">50</td>
+                <td id="B3"   onclick="MarcarSorteado('B2', this)">5</td>
+                <td id="I3"   onclick="MarcarSorteado('I2', this)">9</td>
+                <td id="N3"   onclick="MarcarSorteado('N2', this)">27</td>
+                <td id="G3"   onclick="MarcarSorteado('G2', this)">41</td>
+                <td id="O3"   onclick="MarcarSorteado('O2', this)">50</td>
                
                 </tr>
                 <tr>
-                    <td id="B4"  onclick="MarcarSorteado()">45</td>
-                    <td id="I4"  onclick="MarcarSorteado()">5</td>
-                    <td id="N4"  onclick="MarcarSorteado()"></td>
-                    <td id="G4"  onclick="MarcarSorteado()">37</td>
-                    <td id="O4"  onclick="MarcarSorteado()">49</td>
+                    <td id="B4" onclick="MarcarSorteado('B3', this)">45</td>
+                    <td id="I4" onclick="MarcarSorteado('I3', this)">5</td>
+                    <td id="N4" onclick="MarcarSorteado('N3', this)"></td>
+                    <td id="G4" onclick="MarcarSorteado('G3', this)">37</td>
+                    <td id="O4" onclick="MarcarSorteado('O3', this)" >49</td>
                   
                     </tr>
                     <tr>
-                        <td id="B5" onclick="MarcarSorteado()">2</td>
-                        <td id="I5" onclick="MarcarSorteado()">11</td>
-                        <td id="N5" onclick="MarcarSorteado()">26</td>
-                        <td id="G5" onclick="MarcarSorteado()">44</td>
-                        <td id="O5" onclick="MarcarSorteado()">53</td>
+                        <td id="B5" onclick="MarcarSorteado('B4', this)">2</td>
+                        <td id="I5" onclick="MarcarSorteado('I4', this)">11</td>
+                        <td id="N5" onclick="MarcarSorteado('N4', this)">26</td>
+                        <td id="G5" onclick="MarcarSorteado('G4', this)">44</td>
+                        <td id="O5" onclick="MarcarSorteado('O4', this)">53</td>
                        
                         </tr>
                         <tr>
-                            <td  id="B6"  onclick="MarcarSorteado()" >9</td>
-                            <td  id="I6"  onclick="MarcarSorteado()">14</td>
-                            <td  id="N6"  onclick="MarcarSorteado()">30</td>
-                            <td  id="G6"  onclick="MarcarSorteado()">41</td>
-                            <td  id="O6"  onclick="MarcarSorteado()">70</td>
+                            <td  id="B6"  onclick="MarcarSorteado('B5', this)"  >9</td>
+                            <td  id="I6"  onclick="MarcarSorteado('I5', this)" >14</td>
+                            <td  id="N6"  onclick="MarcarSorteado('N5', this)" >30</td>
+                            <td  id="G6"  onclick="MarcarSorteado('G5', this)" >41</td>
+                            <td  id="O6"  onclick="MarcarSorteado('O5', this)" >70</td>
                            
                             </tr>
                       
@@ -90,7 +90,7 @@
         function GerarArray(numeroinicial, quantidade) {
             var retorno = []
             for (var i = 0; i< quantidade ; i++) {
-                retorno.push(numeroinicial)
+                retorno.push(numeroinicial);
                 numeroinicial++;
             }
             return retorno
@@ -182,8 +182,20 @@
         console.log(O6);
 
 
-        function MarcarSorteado(){
-            alert("deu certo o clique");
+        function MarcarSorteado(nomeId, elemento){
+            console.log("Elemento=")
+            console.log(elemento)
+            console.log(nomeId)
+            elemento.style.backgroundColor = "blue"
+
+            if(elemento.style.backgroundColor ==  "blue")
+            {
+                alert("a cor é azul")
+            }
+            else{
+                alert("a cor é vermelho")
+            }
+            
         }
         //EXERCICO PARA NOTA, FAÇA 5 ARRAYS, 1 PARA CADA LETRA DO BINGO, E DENTRO DELES COLOQUE 5 NUMEROS REFERENTES A SUA LETRA SEM REPETIR NENHUM NUMERO , TUDO DINAMICAMENTE
     </script>
