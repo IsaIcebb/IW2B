@@ -80,6 +80,9 @@
                         </div>
         </tbody>
     </table>
+    <button onclick="GerarCartela()">
+    Gerar Cartela
+    </button>
     <script type="text/javascript">
         var cartelaB=[]
         var cartelaI=[]
@@ -196,6 +199,21 @@
                 alert("a cor é vermelho")
             }
             
+            function GerarCartela(){
+                for(var i = 1; i <=5; i++){
+                    var td= document.GetElementById("G"+i)
+                    td.InnerText = cartelaG[i]
+                    var td= document.GetElementById("B"+i)
+                    td.InnerText = cartelaB[i]
+                    var td= document.GetElementById("I"+i)
+                    td.InnerText = cartelaI[i]
+                    var td= document.GetElementById("N"+i)
+                    td.InnerText = cartelaN[i]
+                    var td= document.GetElementById("O"+i)
+                    td.InnerText = cartelaO[i]
+
+                }
+            }
         }
         //EXERCICO PARA NOTA, FAÇA 5 ARRAYS, 1 PARA CADA LETRA DO BINGO, E DENTRO DELES COLOQUE 5 NUMEROS REFERENTES A SUA LETRA SEM REPETIR NENHUM NUMERO , TUDO DINAMICAMENTE
     </script>
