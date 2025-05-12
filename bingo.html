@@ -1,33 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
- 
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartela de Bingo</title>
+    <title>Bingo Fofo</title>
     <style>
-         body, html {
-                margin: 0;
-                padding: 0;
-                height: 100%;
-                background-color: rgb(223, 184, 241);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
- 
-            td, th{
-                font-size: 75px;
-                padding: 7px 17px;
-                text-align: center;
-                border: 2px solid;
-            }
+        body {
+            font-family: sans-serif;
+            background-color: #E6D6FC;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 20px;
+        }
+
+        div#cartela-container {
+            background-color: #FFF;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table#cartela-bingo {
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        th,
+        td {
+            font-size: 20px;
+            padding: 10px 15px;
+            text-align: center;
+            border: 1px solid #E0E0E0;
+        }
+
+        th {
+            background-color: #D8B4FE;
+            color: #FFF;
+        }
+
+        td {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        td:hover {
+            background-color: #F5EDFF;
+        }
+
+        .marcado {
+            background-color: #FFD1DC !important;
+            font-weight: bold;
+            color: #333 !important;
+        }
+
+        button {
+            background-color: #BFA2DB;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #D8B4FE;
+        }
+
+        #numeroSorteadoExibido {
+            font-size: 18px;
+            color: #555;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        #tabelaNumeros {
+            border-collapse: collapse;
+            background-color: white;
+            margin-top: 20px;
+        }
+
+        #tabelaNumeros td {
+            font-size: 14px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+
+        #tabelaNumeros td.sorteado {
+            background-color: red;
+            color: white;
+        }
     </style>
 </head>
- 
+
 <body>
-    <div>
-        <table>
+    <div id="cartela-container">
+        <table id="cartela-bingo">
             <thead>
                 <tr>
                     <th>B</th>
@@ -39,185 +118,149 @@
             </thead>
             <tbody>
                 <tr>
-                    <td id="b1"onclick="MarcarSorteado('b1', this)">7</td>
-                    <td id="i1"onclick="MarcarSorteado('i1', this)">16</td>
-                    <td id="n1"onclick="MarcarSorteado('n1', this)">33</td>
-                    <td id="g1"onclick="MarcarSorteado('g1', this)">55</td>
-                    <td id="o1"onclick="MarcarSorteado('o1', this)">68</td>
+                    <td id="b1" onclick="marcarSorteado('b1', this)"></td>
+                    <td id="i1" onclick="marcarSorteado('i1', this)"></td>
+                    <td id="n1" onclick="marcarSorteado('n1', this)"></td>
+                    <td id="g1" onclick="marcarSorteado('g1', this)"></td>
+                    <td id="o1" onclick="marcarSorteado('o1', this)"></td>
                 </tr>
                 <tr>
-                    <td id="b2"onclick="MarcarSorteado('b2', this)">1</td>
-                    <td id="i2"onclick="MarcarSorteado('i2', this)">25</td>
-                    <td id="n2"onclick="MarcarSorteado('n2', this)">39</td>
-                    <td id="g2"onclick="MarcarSorteado('g2', this)">53</td>
-                    <td id="o2"onclick="MarcarSorteado('o2', this)">70</td>
+                    <td id="b2" onclick="marcarSorteado('b2', this)"></td>
+                    <td id="i2" onclick="marcarSorteado('i2', this)"></td>
+                    <td id="n2" onclick="marcarSorteado('n2', this)"></td>
+                    <td id="g2" onclick="marcarSorteado('g2', this)"></td>
+                    <td id="o2" onclick="marcarSorteado('o2', this)"></td>
                 </tr>
                 <tr>
-                    <td id="b3"onclick="MarcarSorteado('b3', this)">4</td>
-                    <td id="i3"onclick="MarcarSorteado('i3', this)">29</td>
-                    <td id="n3"onclick="MarcarSorteado('n3', this)">38</td>
-                    <td id="g3"onclick="MarcarSorteado('g3', this)">51</td>
-                    <td id="o3"onclick="MarcarSorteado('o3', this)">77</td>
+                    <td id="b3" onclick="marcarSorteado('b3', this)"></td>
+                    <td id="i3" onclick="marcarSorteado('i3', this)"></td>
+                    <td id="n3" onclick="marcarSorteado('n3', this)"></td>
+                    <td id="g3" onclick="marcarSorteado('g3', this)"></td>
+                    <td id="o3" onclick="marcarSorteado('o3', this)"></td>
                 </tr>
                 <tr>
-                    <td id="b4"onclick="MarcarSorteado('b4', this)">3</td>
-                    <td id="i4"onclick="MarcarSorteado('i4', this)">18</td>
-                    <td id="n4"onclick="MarcarSorteado('n4', this)">40</td>
-                    <td id="g4"onclick="MarcarSorteado('g4', this)">54</td>
-                    <td id="o4"onclick="MarcarSorteado('o4', this)">64</td>
+                    <td id="b4" onclick="marcarSorteado('b4', this)"></td>
+                    <td id="i4" onclick="marcarSorteado('i4', this)"></td>
+                    <td id="n4" onclick="marcarSorteado('n4', this)"></td>
+                    <td id="g4" onclick="marcarSorteado('g4', this)"></td>
+                    <td id="o4" onclick="marcarSorteado('o4', this)"></td>
                 </tr>
                 <tr>
-                    <td id="b5"onclick="MarcarSorteado('b5', this)">10</td>
-                    <td id="i5"onclick="MarcarSorteado('i5', this)">24</td>
-                    <td id="n5"onclick="MarcarSorteado('n5', this)">31</td>
-                    <td id="g5"onclick="MarcarSorteado('g5', this)">58</td>
-                    <td id="o5"onclick="MarcarSorteado('o5', this)">74</td>
+                    <td id="b5" onclick="marcarSorteado('b5', this)"></td>
+                    <td id="i5" onclick="marcarSorteado('i5', this)"></td>
+                    <td id="n5" onclick="marcarSorteado('n5', this)"></td>
+                    <td id="g5" onclick="marcarSorteado('g5', this)"></td>
+                    <td id="o5" onclick="marcarSorteado('o5', this)"></td>
                 </tr>
             </tbody>
-        </table>az
- 
-        <button onclick="GerarCartela()">
-            Gerar Cartela
-        </button>
-        <button onclick="SortearNumero()">Sortear número</button>
-        <p id="numeroSorteadoExibido" style="font-size: 24px; color: white;"></p>
- 
+        </table>
+
+        <button onclick="gerarCartela()">Gerar Cartela</button>
+        <button onclick="sortearNumero()">Sortear número</button>
+        <p id="numeroSorteadoExibido"></p>
 
     </div>
-   
- 
- 
-    <script type="text/javascript">
-        var cartelaB = [];
-        var cartelaI = [];
-        var cartelaN = [];
-        var cartelaG = [];
-        var cartelaO = [];
- 
-        function GerarArray(NumeroInicial, quantidade) {
-            var retorno = []
-            for (var i = 0; i < quantidade; i++)
-            {
-                retorno.push(NumeroInicial)
-                NumeroInicial++;
-            }
-            return retorno
-        }
-       
-       
-        var b2 = document.getElementById("b2");
-        var b1 = document.getElementById("b1");
-        console.log(b2);
-        console.log(b1);
- 
-        function MarcarSorteado(nomeId, elemento){
-            console.log("Elemento=")
-            console.log(elemento)
-            console.log(nomeId)
-            elemento.style.backgroundColor = "red";
-            if(elemento.style.backgroundColor == "red")
-            {
-                alert("a cor é red")
-            }
-            else
-            {
- 
-            }
-        }
- 
- 
- 
-        cartelaB = GerarArray(1,15);
-        cartelaI = GerarArray(16,15);
-        cartelaN = GerarArray(31,15);
-        cartelaG = GerarArray(46,15);
-        cartelaO = GerarArray(61,15);
- 
-        function GerarCartela()
-        {
-            cartelaB = MisturarArray(GerarArray(1,15));
-            cartelaI = MisturarArray(GerarArray(16,15));
-            cartelaN = MisturarArray(GerarArray(31,15));
-            cartelaG = MisturarArray(GerarArray(46,15));
-            cartelaO = MisturarArray(GerarArray(61,15));
- 
-            for(var i = 1; i <= 5; i++ )
-            {
-                var td = document.getElementById("g"+i)
-                td.innerText = cartelaG[i]
-               
-                td = document.getElementById("i"+i)
-                td.innerText = cartelaI[i]
- 
-                td = document.getElementById("b"+i)
-                td.innerText = cartelaB[i]
- 
-                td = document.getElementById("n"+i)
-                td.innerText = cartelaN[i]
- 
-                td = document.getElementById("o"+i)
-                td.innerText = cartelaO[i]
-            }
-        }
- 
- 
-       
-        function NumeroAleatorio(numeroMinimo, numeroMaximo) {
-            var retorno = Math.floor(Math.random() * numeroMaximo)
-            if (retorno > 0 && retorno >= numeroMinimo && retorno <= numeroMaximo) {
-                return retorno
-            } else {
-                return NumeroAleatorio(numeroMinimo, numeroMaximo)
-            }
-        }
- 
- 
- 
- 
-        function MisturarArray(array) {
-            var aleatorio
-            var cont = array.length
-            var auxiliar
-            while (cont != 0) {
-                aleatorio = NumeroAleatorio(1, array.length)
-                cont--
-                auxiliar = array[cont]
-                array[cont] = array[aleatorio]
-                array[aleatorio] = auxiliar
-            }
-            return array
-        }
- 
 
-    var NumerosSorteados = GerarArray(1, 75)
-    NumerosSorteados = MisturarArray(NumerosSorteados)
- 
-    var indiceSorteio = 0;
- 
-    function SortearNumero() {
-        if (indiceSorteio < NumerosSorteados.length) {
-            var numero = NumerosSorteados[indiceSorteio];
-            indiceSorteio++;
- 
-            document.getElementById("numeroSorteadoExibido").innerText = "Número sorteado: " + numero;
- 
-            
-            for (var i = 1; i <= 5; i++) {
-                var colunas = ["b", "i", "n", "g", "o"];
-                for (var j = 0; j < colunas.length; j++) {
-                    var id = colunas[j] + i;
-                    var celula = document.getElementById(id);
-                    if (celula && parseInt(celula.innerText) === numero) {
-                        celula.style.backgroundColor = "red";
-                    }
+    <table id="tabelaNumeros" border="1" style="border-collapse: collapse; background-color: white;">
+        <tbody></tbody>
+    </table>
+
+    <script>
+        let cartela = { B: [], I: [], N: [], G: [], O: [] };
+        let numerosSorteados = [];
+        let indiceSorteio = 0;
+        let painelNumeros = {};
+
+        function gerarNumeros(min, max, quantidade, jaGerados = []) {
+            const numeros = [];
+            while (numeros.length < quantidade) {
+                const numero = Math.floor(Math.random() * (max - min + 1)) + min;
+                if (!numeros.includes(numero) && !jaGerados.includes(numero)) {
+                    numeros.push(numero);
                 }
             }
-        } else {
-            document.getElementById("numeroSorteadoExibido").innerText = "Todos os números foram sorteados.";
+            return numeros.sort((a, b) => a - b);
         }
-    }
-</script>
+
+        function misturarArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function gerarCartela() {
+            cartela.B = gerarNumeros(1, 15, 5);
+            cartela.I = gerarNumeros(16, 30, 5);
+            cartela.N = gerarNumeros(31, 45, 5);
+            cartela.G = gerarNumeros(46, 60, 5);
+            cartela.O = gerarNumeros(61, 75, 5);
+
+            for (let i = 0; i < 5; i++) {
+                document.getElementById(`b${i + 1}`).innerText = cartela.B[i];
+                document.getElementById(`i${i + 1}`).innerText = cartela.I[i];
+                document.getElementById(`n${i + 1}`).innerText = cartela.N[i];
+                document.getElementById(`g${i + 1}`).innerText = cartela.G[i];
+                document.getElementById(`o${i + 1}`).innerText = cartela.O[i];
+
+                document.getElementById(`b${i + 1}`).classList.remove('marcado');
+                document.getElementById(`i${i + 1}`).classList.remove('marcado');
+                document.getElementById(`n${i + 1}`).classList.remove('marcado');
+                document.getElementById(`g${i + 1}`).classList.remove('marcado');
+                document.getElementById(`o${i + 1}`).classList.remove('marcado');
+            }
+        }
+
+        function marcarSorteado(id, elemento) {
+            elemento.classList.toggle('marcado');
+        }
+
+        function sortearNumero() {
+            if (indiceSorteio < 75) {
+                let numeroSorteado;
+                do {
+                    numeroSorteado = Math.floor(Math.random() * 75) + 1;
+                } while (numerosSorteados.includes(numeroSorteado));
+
+                numerosSorteados.push(numeroSorteado);
+                document.getElementById('numeroSorteadoExibido').innerText = `Número sorteado: ${numeroSorteado}`;
+
+          
+                const celulaPainel = document.getElementById(`num${numeroSorteado}`);
+                if (celulaPainel) {
+                    celulaPainel.classList.add('sorteado');
+                }
+
+                for (let coluna of ['B', 'I', 'N', 'G', 'O']) {
+                    for (let i = 0; i < 5; i++) {
+                        const elementoId = `${coluna.toLowerCase()}${i + 1}`;
+                        const elemento = document.getElementById(elementoId);
+                        if (elemento && parseInt(elemento.innerText) === numeroSorteado) {
+                            elemento.classList.add('marcado');
+                        }
+                    }
+                }
+                indiceSorteio++;
+            } else {
+                document.getElementById('numeroSorteadoExibido').innerText = 'Todos os números foram sorteados.';
+            }
+        }
+
+        const tabelaNumerosElement = document.getElementById('tabelaNumeros').getElementsByTagName('tbody')[0];
+        let linha;
+        for (let i = 1; i <= 75; i++) {
+            const coluna = (i - 1) % 15;
+            if (coluna === 0) {
+                linha = tabelaNumerosElement.insertRow();
+            }
+            const celula = linha.insertCell();
+            celula.id = `num${i}`;
+            celula.innerText = i;
+            painelNumeros[i] = celula;
+        }
+
+        gerarCartela(); 
+    </script>
 </body>
- 
+
 </html>
- 
