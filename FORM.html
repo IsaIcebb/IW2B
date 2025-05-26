@@ -5,70 +5,136 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formularios</title>
+    <style>
+        .borda-vermelha {
+            border: 2px solid red;
+        }
+        .mensagem-erro {
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <form action="salvar.html" method="post" onsubmit="return ValidarFormulario()">
         <label>Cep</label>
-        <input type="text" name="cep" id="cep" class="campo" /><br><br>
+        <input type="text" name="cep" id="cep" class="campo" oninput="removerErro('cep')" /><br>
+        <div id="erroCep" class="mensagem-erro">Campo não pode estar em branco</div><br>
+
         <label>Endereço</label>
-        <input type="text" name="endereco" id="endereco" class="campo" /> <br><br>
+        <input type="text" name="endereco" id="endereco" class="campo" oninput="removerErro('endereco')" /> <br>
+        <div id="erroEndereco" class="mensagem-erro">Campo não pode estar em branco</div><br>
+
         <label>Número</label>
-        <input type="text" name="numero" id="numero" class="campo" /><br><br>
+        <input type="text" name="numero" id="numero" class="campo" oninput="removerErro('numero')" /><br>
+        <div id="erroNumero" class="mensagem-erro">Campo não pode estar em branco</div><br>
+
         <label>Bairro</label>
-        <input type="text" name="bairro" id="bairro" class="campo" /><br><br>
+        <input type="text" name="bairro" id="bairro" class="campo" oninput="removerErro('bairro')" /><br>
+        <div id="erroBairro" class="mensagem-erro">Campo não pode estar em branco</div><br>
+
         <label>Cidade</label>
-        <input type="text" name="cidade" id="cidade" class="campo" /> <br><br>
+        <input type="text" name="cidade" id="cidade" class="campo" oninput="removerErro('cidade')" /> <br>
+        <div id="erroCidade" class="mensagem-erro">Campo não pode estar em branco</div><br>
+
         <label>Estado</label>
-        <input type="text" name="estado" id="estado" class="campo" /> <br><br>
-        <button id="botao" class="botao" type="submit">
-       
-        </button>
+        <input type="text" name="estado" id="estado" class="campo" oninput="removerErro('estado')" /> <br>
+        <div id="erroEstado" class="mensagem-erro">Campo não pode estar em branco</div><br>
+
+        <button id="botao" class="botao" type="submit">Enviar</button>
     </form>
     <script>
-        function ValidarFormulario()
-        {
-            var cep = document.getElementById('cep')
+        function removerErro(idCampo) {
+            const campo = document.getElementById(idCampo);
+            const mensagemErro = document.getElementById('erro' + idCampo);
+
+            if (campo.value.trim() !== "") {
+                campo.classList.remove('borda-vermelha');
+                if (mensagemErro) {
+                    mensagemErro.style.display = 'none';
+                }
+            }
+        }
+
+        function ValidarFormulario() {
+            let todosCamposOk = true;
+
+            const camposParaValidar = ['cep', 'endereco', 'numero', 'bairro', 'cidade', 'estado'];
+
+            camposParaValidar.forEach(campoId => {
+                const campo = document.getElementById(campoId);
+                const mensagemErro = document.getElementById('erro' + campoId);
+
+                if (campo.value.trim() === "") {
+                    campo.classList.add('borda-vermelha');
+                    if (mensagemErro) {
+                        mensagemErro.style.display = 'block';
+                    }
+                    todosCamposOk = false;
+                } else {
+                    campo.classList.remove('borda-vermelha');
+                    if (mensagemErro) {
+                        mensagemErro.style.display = 'none';
+                    }
+                }
+                var cep = document.getElementById('cep')
             if (cep.value == "")
-            {
-                alert('Campo CEP deve ser preenchido')
+            {alert('Campo CEP deve ser preenchido')
                 return false
             }
 
             var endereco = document.getElementById('endereco')
             if (endereco.value == "")
             {
+                
+ 
                 alert('Campo ENDEREÇO deve ser preenchido')
                 return false
             }
-
+ 
             var numero = document.getElementById('numero')
             if (numero.value == "")
             {
-                alert('Campo NUMERO deve ser preenchido')
+              
+ 
+                alert('Campo numero deve ser preenchido')
                 return false
             }
-
+ 
             var bairro = document.getElementById('bairro')
             if (bairro.value == "")
             {
-                alert('Campo BAIRRO deve ser preenchido')
+               
+ 
+                alert('Campo bairro deve ser preenchido')
                 return false
             }
-          
-          var cidade = document.getElementById('cidade')
-          if (cidade.value =="")
-          {
-            alert('campo CIDADE deve estar preenchido')
-            return false}
-          
-          var estado = document.getElementById('estado')
-          if (estado.value == "")
-          {
-            alert('campo ESTADO deve estar preenchido')
-            return false
+ 
+            var cidade = document.getElementById('cidade')
+            if (cidade.value == "")
+            {
+               
+ 
+                alert('Campo cidade deve ser preenchido')
+                return false
+            }
+ 
+            var estado = document.getElementById('estado')
+            if (estado.value == "")
+            {
+              
+ 
+                alert('Campo estado deve ser preenchido')
+                return false
+            }
+           
+            return true;
+        
             
-          }
-        }
+            return todosCamposOk;
+        }}
     </script>
 </body>
 </html>
