@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formularios</title>
+    <title>Formulário</title>
     <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        form div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
         .borda-vermelha {
             border: 2px solid red;
         }
@@ -15,126 +32,91 @@
             margin-top: 5px;
             display: none;
         }
+        .botao {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .botao:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-    <form action="salvar.html" method="post" onsubmit="return ValidarFormulario()">
-        <label>Cep</label>
-        <input type="text" name="cep" id="cep" class="campo" oninput="removerErro('cep')" /><br>
-        <div id="erroCep" class="mensagem-erro">Campo não pode estar em branco</div><br>
+    <form action="salvar.html" method="post" onsubmit="return validarFormulario()">
+        <div>
+            <label for="cep">CEP</label>
+            <input type="text" name="cep" id="cep" oninput="removerErro(this)" />
+            <div id="erro-cep" class="mensagem-erro">O campo CEP não pode estar em branco.</div>
+        </div>
 
-        <label>Endereço</label>
-        <input type="text" name="endereco" id="endereco" class="campo" oninput="removerErro('endereco')" /> <br>
-        <div id="erroEndereco" class="mensagem-erro">Campo não pode estar em branco</div><br>
+        <div>
+            <label for="endereco">Endereço</label>
+            <input type="text" name="endereco" id="endereco" oninput="removerErro(this)" />
+            <div id="erro-endereco" class="mensagem-erro">O campo Endereço não pode estar em branco.</div>
+        </div>
 
-        <label>Número</label>
-        <input type="text" name="numero" id="numero" class="campo" oninput="removerErro('numero')" /><br>
-        <div id="erroNumero" class="mensagem-erro">Campo não pode estar em branco</div><br>
+        <div>
+            <label for="numero">Número</label>
+            <input type="text" name="numero" id="numero" oninput="removerErro(this)" />
+            <div id="erro-numero" class="mensagem-erro">O campo Número não pode estar em branco.</div>
+        </div>
 
-        <label>Bairro</label>
-        <input type="text" name="bairro" id="bairro" class="campo" oninput="removerErro('bairro')" /><br>
-        <div id="erroBairro" class="mensagem-erro">Campo não pode estar em branco</div><br>
+        <div>
+            <label for="bairro">Bairro</label>
+            <input type="text" name="bairro" id="bairro" oninput="removerErro(this)" />
+            <div id="erro-bairro" class="mensagem-erro">O campo Bairro não pode estar em branco.</div>
+        </div>
 
-        <label>Cidade</label>
-        <input type="text" name="cidade" id="cidade" class="campo" oninput="removerErro('cidade')" /> <br>
-        <div id="erroCidade" class="mensagem-erro">Campo não pode estar em branco</div><br>
+        <div>
+            <label for="cidade">Cidade</label>
+            <input type="text" name="cidade" id="cidade" oninput="removerErro(this)" />
+            <div id="erro-cidade" class="mensagem-erro">O campo Cidade não pode estar em branco.</div>
+        </div>
 
-        <label>Estado</label>
-        <input type="text" name="estado" id="estado" class="campo" oninput="removerErro('estado')" /> <br>
-        <div id="erroEstado" class="mensagem-erro">Campo não pode estar em branco</div><br>
+        <div>
+            <label for="estado">Estado</label>
+            <input type="text" name="estado" id="estado" oninput="removerErro(this)" />
+            <div id="erro-estado" class="mensagem-erro">O campo Estado não pode estar em branco.</div>
+        </div>
 
         <button id="botao" class="botao" type="submit">Enviar</button>
     </form>
-    <script>
-        function removerErro(idCampo) {
-            const campo = document.getElementById(idCampo);
-            const mensagemErro = document.getElementById('erro' + idCampo);
 
-            if (campo.value.trim() !== "") {
-                campo.classList.remove('borda-vermelha');
-                if (mensagemErro) {
-                    mensagemErro.style.display = 'none';
-                }
+    <script>
+        function removerErro(campo) {
+            campo.classList.remove('borda-vermelha');
+            
+            const mensagemErro = document.getElementById('erro-' + campo.id);
+            if (mensagemErro) {
+                mensagemErro.style.display = 'none';
             }
         }
 
-        function ValidarFormulario() {
-            let todosCamposOk = true;
-
+        function validarFormulario() {
+            let formularioValido = true;
             const camposParaValidar = ['cep', 'endereco', 'numero', 'bairro', 'cidade', 'estado'];
 
-            camposParaValidar.forEach(campoId => {
-                const campo = document.getElementById(campoId);
-                const mensagemErro = document.getElementById('erro' + campoId);
+            camposParaValidar.forEach(id => {
+                const campo = document.getElementById(id);
+                const mensagemErro = document.getElementById('erro-' + id);
 
                 if (campo.value.trim() === "") {
+                    formularioValido = false; 
                     campo.classList.add('borda-vermelha');
                     if (mensagemErro) {
                         mensagemErro.style.display = 'block';
                     }
-                    todosCamposOk = false;
                 } else {
-                    campo.classList.remove('borda-vermelha');
-                    if (mensagemErro) {
-                        mensagemErro.style.display = 'none';
-                    }
+                    removerErro(campo);
                 }
-                var cep = document.getElementById('cep')
-            if (cep.value == "")
-            {alert('Campo CEP deve ser preenchido')
-                return false
-            }
-
-            var endereco = document.getElementById('endereco')
-            if (endereco.value == "")
-            {
-                
- 
-                alert('Campo ENDEREÇO deve ser preenchido')
-                return false
-            }
- 
-            var numero = document.getElementById('numero')
-            if (numero.value == "")
-            {
-              
- 
-                alert('Campo numero deve ser preenchido')
-                return false
-            }
- 
-            var bairro = document.getElementById('bairro')
-            if (bairro.value == "")
-            {
-               
- 
-                alert('Campo bairro deve ser preenchido')
-                return false
-            }
- 
-            var cidade = document.getElementById('cidade')
-            if (cidade.value == "")
-            {
-               
- 
-                alert('Campo cidade deve ser preenchido')
-                return false
-            }
- 
-            var estado = document.getElementById('estado')
-            if (estado.value == "")
-            {
-              
- 
-                alert('Campo estado deve ser preenchido')
-                return false
-            }
-           
-            return true;
-        
+            });
             
-            return todosCamposOk;
-        }}
+            return formularioValido;
+        }
     </script>
 </body>
 </html>
