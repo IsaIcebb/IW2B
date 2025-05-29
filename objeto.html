@@ -11,10 +11,27 @@
         var carro = {
             "marca" : "hyundai",
             "modelo" : "ix35",
-            "ano" : "2020"
+            "ano" : "2020",
+            "cor" : "vermelho"
+        }
+        document.write(carro.modelo);
+
+        var carro = {
+            "marca" : "fiat",
+            "modelo" : "fiat 500",
+            "ano" : "2024",
+            "cor" : "cinza"
+        }
+
+        var carro = {
+            "marca" : "toyota",
+            "modelo" : "hilux",
+            "ano" : "2009",
+            "cor" : "prata"
         }
         
-
+        var todascores = document.getElementById(carro.cor)
+        todascores.innerText = carro.cor
 
 
     </script>
