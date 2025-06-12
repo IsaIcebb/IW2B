@@ -30,7 +30,7 @@
     <script>
         function consultarAPI()
         {
-            var cep = document.getElementById("cep")
+            var cep = document.getElementById("cep") + cep.value +*/json/*
             var url=viacep.com.br/ws/01001000/json/
             fetch(url).then((response) => response.json())
             .then((dados)=> {
