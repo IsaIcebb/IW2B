@@ -32,7 +32,18 @@
         
         var todascores = document.getElementById(carro.cor)
         todascores.innerText = carro.cor
-
+        
+    var pessoa = {
+        "nome" : "Paula",
+        "idade" : "26",
+        endereço : { 
+            "rua" : "Rua Francisco Antunes",
+            "numero" : "12",
+            "cidade" : "São Paulo"
+        }
+    }
+        var CidadePessoa = pessoa.endereço.cidade;
+        console.log("A cidade da pessoa é: " + CidadePessoa);
 
     </script>
 
