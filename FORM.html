@@ -9,93 +9,154 @@
 <body>
     <form action="salvar.html" method="post" onsubmit="return ValidarFormulario()">
         <label>Cep</label>
-        <input type="text" name="cep" id="cep" class="campo" /><br><br>
+        <input type="text" name="cep" id="cep" class="campo" oninput="validarCampoAoDigitar(this)" /><br><br>
         <button onclick="consultarAPI()" type="button">
             consultar CEP
         </button>
         <label>Endereço</label>
-        <input type="text" name="endereco" id="endereco" class="campo" /> <br><br>
+        <input type="text" name="endereco" id="endereco" class="campo" oninput="validarCampoAoDigitar(this)" /> <br><br>
         <label>Número</label>
-        <input type="text" name="numero" id="numero" class="campo" /><br><br>
+        <input type="text" name="numero" id="numero" class="campo" oninput="validarCampoAoDigitar(this)" /><br><br>
         <label>Bairro</label>
-        <input type="text" name="bairro" id="bairro" class="campo" /><br><br>
+        <input type="text" name="bairro" id="bairro" class="campo" oninput="validarCampoAoDigitar(this)" /><br><br>
         <label>Cidade</label>
-        <input type="text" name="cidade" id="cidade" class="campo" /> <br><br>
+        <input type="text" name="cidade" id="cidade" class="campo" oninput="validarCampoAoDigitar(this)" /> <br><br>
         <label>Estado</label>
-        <input type="text" name="estado" id="estado" class="campo" /> <br><br>
+        <input type="text" name="estado" id="estado" class="campo" oninput="validarCampoAoDigitar(this)" /> <br><br>
         <button id="botao" class="botao" type="submit">
             Enviar dados
         </button>
     </form>
     <script>
-        function consultarAPI()
-        {
-            var cep = document.getElementById("cep") + cep.value +*/json/*
-            var url=viacep.com.br/ws/01001000/json/
-            fetch(url).then((response) => response.json())
-            .then((dados)=> {
-                var endereco = document.getElementById("endereco")
-                var bairro = document.getElementById("bairro")
-                var estado = document.getElementById("estado")
-                var cidade = document.getElementById("cidade")
- 
-                endereco.value = dados.lougradouro
-                bairro.value = dados.bairro
-                estado.value = dados.estado
-                cidade.value = dados.localidade
-            })
+        function consultarAPI() {
+            var cepInput = document.getElementById("cep");
+            var cep = cepInput.value.replace(/\D/g, ''); 
+            var url = `https://viacep.com.br/ws/${cep}/json/`;
+
+            removerBordaVermelha(cepInput);
+            removerMensagemDeErro(cepInput);
+
+            fetch(url)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Erro na conexão! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((dados) => {
+                    if (dados.erro) {
+                        alert('CEP não encontrado ou inválido. Por favor, digite um CEP válido.');
+                        adicionarBordaVermelha(cepInput);
+                        exibirMensagemDeErro(cepInput, 'CEP inválido ou não encontrado');
+                        limparCamposDeEndereco();
+                        return;
+                    }
+
+                    var endereco = document.getElementById("endereco");
+                    var bairro = document.getElementById("bairro");
+                    var estado = document.getElementById("estado");
+                    var cidade = document.getElementById("cidade");
+
+                    endereco.value = dados.logradouro || '';
+                    bairro.value = dados.bairro || '';
+                    estado.value = dados.uf || '';
+                    cidade.value = dados.localidade || '';
+
+                    removerBordaVermelha(endereco);
+                    removerMensagemDeErro(endereco);
+                    removerBordaVermelha(bairro);
+                    removerMensagemDeErro(bairro);
+                    removerBordaVermelha(estado);
+                    removerMensagemDeErro(estado);
+                    removerBordaVermelha(cidade);
+                    removerMensagemDeErro(cidade);
+                })
+                .catch((error) => {
+                    console.error('Erro ao consultar a API:', error);
+                    alert('Erro ao consultar o CEP. Verifique sua conexão e tente novamente.');
+                    adicionarBordaVermelha(cepInput);
+                    exibirMensagemDeErro(cepInput, 'Erro na consulta do CEP. Tente novamente.');
+                    limparCamposDeEndereco();
+                });
         }
- 
- 
- 
- 
- 
-        function ValidarFormulario()
-        {
-            var cep = document.getElementById('cep')
-            if (cep.value == "")
-            {
-                alert('Campo CEP deve ser preenchido')
-               
-                return false
+
+        function limparCamposDeEndereco() {
+            document.getElementById("endereco").value = '';
+            document.getElementById("bairro").value = '';
+            document.getElementById("estado").value = '';
+            document.getElementById("cidade").value = '';
+        }
+
+        function adicionarBordaVermelha(campo) {
+            campo.style.border = '1px solid red';
+        }
+
+        function removerBordaVermelha(campo) {
+            campo.style.border = '';
+        }
+
+        function exibirMensagemDeErro(campo, mensagem) {
+            let mensagemErroExistente = document.getElementById(campo.id + '-erro-msg');
+
+            if (!mensagemErroExistente) {
+                const spanErro = document.createElement('span');
+                spanErro.id = campo.id + '-erro-msg';
+                spanErro.style.color = 'red';
+                spanErro.style.fontSize = '0.8em';
+                spanErro.style.display = 'block';
+                spanErro.textContent = mensagem;
+
+                if (campo.nextElementSibling && campo.nextElementSibling.tagName === 'BR') {
+                    campo.parentNode.insertBefore(spanErro, campo.nextElementSibling.nextElementSibling || campo.nextElementSibling);
+                } else {
+                    campo.parentNode.insertBefore(spanErro, campo.nextSibling);
+                }
+            } else {
+                mensagemErroExistente.textContent = mensagem;
+                mensagemErroExistente.style.display = 'block';
             }
- 
-            var endereco = document.getElementById('endereco')
-            if (endereco.value == "")
-            {
-                alert('Campo ENDEREÇO deve ser preenchido')
-                return false
+        }
+
+        function removerMensagemDeErro(campo) {
+            const mensagemErroExistente = document.getElementById(campo.id + '-erro-msg');
+            if (mensagemErroExistente) {
+                mensagemErroExistente.parentNode.removeChild(mensagemErroExistente);
             }
- 
-            var numero = document.getElementById('numero')
-            if (numero.value == "")
-            {
-                alert('Campo NUMERO deve ser preenchido')
-                return false
+        }
+
+        function validarCampoAoDigitar(campo) {
+            if (campo.value.trim() === "") {
+                adicionarBordaVermelha(campo);
+                exibirMensagemDeErro(campo, 'Campo não pode estar em branco');
+            } else {
+                removerBordaVermelha(campo);
+                removerMensagemDeErro(campo);
             }
- 
-            var bairro = document.getElementById('bairro')
-            if (bairro.value == "")
-            {
-                alert('Campo BAIRRO deve ser preenchido')
-                return false
+        }
+
+        function ValidarFormulario() {
+            let tudoPreenchido = true;
+            const camposDoFormulario = ['cep', 'endereco', 'numero', 'bairro', 'cidade', 'estado'];
+
+            camposDoFormulario.forEach(idDoCampo => {
+                const campoAtual = document.getElementById(idDoCampo);
+
+                removerBordaVermelha(campoAtual);
+                removerMensagemDeErro(campoAtual);
+
+                if (campoAtual.value.trim() === "") {
+                    adicionarBordaVermelha(campoAtual);
+                    exibirMensagemDeErro(campoAtual, 'Campo não pode estar em branco');
+                    tudoPreenchido = false;
+                }
+            });
+
+            if (!tudoPreenchido) {
+                alert('Por favor, preencha todos os campos obrigatórios para continuar.');
             }
- 
-            var cidade = document.getElementById('cidade')
-            if (cidade.value == "")
-            {
-                alert('Campo CIDADE deve ser preenchido')
-                return false
-            }
- 
-            var estado = document.getElementById('estado')
-            if (estado.value == "")
-            {
-                alert('Campo ESTADO deve ser preenchido')
-                return false
-            }
+
+            return tudoPreenchido;
         }
     </script>
 </body>
 </html>
- 
