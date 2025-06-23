@@ -1,6 +1,9 @@
 const pokemonName = document.querySelector('.pokemon__name');
 const pokemonNumber = document.querySelector('.pokemon__number');
 const pokemonImage = document.querySelector('.pokemon__image');
+const pokemonAbilities = document.querySelector('.pokemon__abilities');
+
+
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input__search');
@@ -22,6 +25,8 @@ const renderPokemon = async (pokemon) => {
 
   pokemonName.innerHTML = 'Loading...';
   pokemonNumber.innerHTML = '';
+   pokemonAbilities.innerHTML = '';
+
 
   const data = await fetchPokemon(pokemon);
 
@@ -32,10 +37,13 @@ const renderPokemon = async (pokemon) => {
     pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
     input.value = '';
     searchPokemon = data.id;
+    const abilities = data.abilities.map(abilityInfo => abilityInfo.ability.name);
+    pokemonAbilities.innerHTML = `Habilidades: ${abilities.join(', ')}`;
   } else {
     pokemonImage.style.display = 'none';
     pokemonName.innerHTML = 'Not found :c';
     pokemonNumber.innerHTML = '';
+    pokemonAbilities.innerHTML = ''; 
   }
 }
 
