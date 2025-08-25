@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTS - Formulário</title>
+  <!-- Link do Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #FAD1D1; /* Fundo rosa */
+    }
+    .card-header {
+      background-color: #e06a6a; /* Cor temática do BTS */
+      color: white;
+    }
+    .form-control {
+      border-radius: 25px;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .btn-bts {
+      background-color: #9C0B0B;
+      color: white;
+      border-radius: 25px;
+    }
+    .btn-bts:hover {
+      background-color: #B11414;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <h3>Formulário BTS</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            
+            <div class="form-group">
+              <label for="nome">Nome Completo</label>
+              <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+            </div>
+      
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+            </div>
+      
+            <div class="form-group">
+              <label for="membro">Membro BTS Favorito</label>
+              <select class="form-control" id="membro">
+                <option>Jin</option>
+                <option>RM</option>
+                <option>Jimin</option>
+                <option>V</option>
+                <option>Suga</option>
+                <option>J-Hope</option>
+                <option>Jungkook</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="mensagem">BTS</label>
+              <textarea class="form-control" id="mensagem" rows="3" placeholder="Deixe sua mensagem para o BTS"></textarea>
+            </div>
+         
+            <button type="submit" class="btn btn-bts btn-block">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
