@@ -1,84 +1,212 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BTS - Formulário</title>
-  <!-- Link do Bootstrap CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #FAD1D1; /* Fundo rosa */
-    }
-    .card-header {
-      background-color: #e06a6a; /* Cor temática do BTS */
-      color: white;
-    }
-    .form-control {
-      border-radius: 25px;
-    }
-    .container {
-      margin-top: 50px;
-    }
-    .btn-bts {
-      background-color: #9C0B0B;
-      color: white;
-      border-radius: 25px;
-    }
-    .btn-bts:hover {
-      background-color: #B11414;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Membros BTS</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #ffd1dc; /* rosa pastel */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4b3b4f;
+        }
+        .navbar {
+            background-color: #f9c4d0 !important;
+            box-shadow: 0 2px 6px rgba(180, 100, 150, 0.2);
+            color: #5a314d;
+        }
+        .navbar .navbar-brand {
+            color: #8b3a62;
+            font-weight: 700;
+        }
+        .navbar .form-control {
+            border-radius: 10px;
+            border: 1.5px solid #e75480;
+            box-shadow: none;
+        }
+        .navbar .form-control:focus {
+            border-color: #b85c8a;
+            box-shadow: 0 0 8px rgba(184, 92, 138, 0.5);
+        }
+        .btn-outline-success {
+            color: #e75480;
+            border-color: #e75480;
+            border-radius: 10px;
+        }
+        .btn-outline-success:hover {
+            background-color: #e75480;
+            color: white;
+            border-color: #b85c8a;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(180, 100, 150, 0.2);
+            background: #fff0f6;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        h5 {
+            color: #8b3a62;
+            font-weight: 700;
+        }
+        .btn-success {
+            background-color: #e75480;
+            border: none;
+            border-radius: 10px;
+        }
+        .btn-success:hover {
+            background-color: #d0416e;
+        }
+        .btn-primary {
+            background-color: #b85c8a;
+            border: none;
+            border-radius: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #9e496f;
+        }
+        .btn-warning {
+            background-color: #f4a6b9;
+            border: none;
+            color: #5a314d;
+            border-radius: 10px;
+        }
+        .btn-warning:hover {
+            background-color: #d884a1;
+            color: #3e2231;
+        }
+        .btn-danger {
+            background-color: #de587d;
+            border: none;
+            border-radius: 10px;
+        }
+        .btn-danger:hover {
+            background-color: #b8435f;
+        }
+        table {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        thead.table-light {
+            background-color: #f9c4d0 !important;
+            color: #5a314d;
+            font-weight: 600;
+        }
+        tbody tr:hover {
+            background-color: #f9e3ec;
+        }
+        input.form-control {
+            border-radius: 10px;
+            border: 1.5px solid #e75480;
+            box-shadow: none;
+        }
+        input.form-control:focus {
+            border-color: #b85c8a;
+            box-shadow: 0 0 8px rgba(184, 92, 138, 0.5);
+        }
+        .row.-2, .card.-3 {
+            
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header text-center">
-          <h3>Formulário BTS</h3>
-        </div>
-        <div class="card-body">
-          <form>
-            
-            <div class="form-group">
-              <label for="nome">Nome Completo</label>
-              <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
-            </div>
-      
-            <div class="form-group">
-              <label for="email">E-mail</label>
-              <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
-            </div>
-      
-            <div class="form-group">
-              <label for="membro">Membro BTS Favorito</label>
-              <select class="form-control" id="membro">
-                <option>Jin</option>
-                <option>RM</option>
-                <option>Jimin</option>
-                <option>V</option>
-                <option>Suga</option>
-                <option>J-Hope</option>
-                <option>Jungkook</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
-              <label for="mensagem">BTS</label>
-              <textarea class="form-control" id="mensagem" rows="3" placeholder="Deixe sua mensagem para o BTS"></textarea>
-            </div>
-         
-            <button type="submit" class="btn btn-bts btn-block">Enviar</button>
-          </form>
-        </div>
-      </div>
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Navbar</a>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
+  </nav>
+
+  <div class="container mt-5">
+      <div class="card">
+          <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5>Pesquisar Membros</h5>
+              </div>
+              <div class="row g-2">
+                  <div class="col-2">
+                      <button class="btn btn-success w-100">Novo Membro</button>
+                  </div>
+                  <div class="col-8">
+                      <input type="text" class="form-control" placeholder="Pesquise aqui...">
+                  </div>
+                  <div class="col-2">
+                      <button class="btn btn-primary w-100">Pesquisar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="card mt-3">
+          <div class="card-body">
+              <h5 class="mb-3">Membros do BTS</h5>
+              <table class="table table-bordered table-hover">
+                  <thead class="table-light">
+                      <tr>
+                          <th>#</th>
+                          <th>Nome</th>
+                          <th>Nome Artístico</th>
+                          <th>Data de Nascimento</th>
+                          <th>Posição</th>
+                          <th>Ações</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>1</td>
+                          <td>Kim Nam-joon</td>
+                          <td>RM</td>
+                          <td>12/09/1994</td>
+                          <td>Líder / Rapper</td>
+                          <td>
+                              <button class="btn btn-warning btn-sm">Editar</button>
+                              <button class="btn btn-danger btn-sm">Excluir</button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>2</td>
+                          <td>Kim Seok-jin</td>
+                          <td>Jin</td>
+                          <td>04/12/1992</td>
+                          <td>Vocalista / Visual</td>
+                          <td>
+                              <button class="btn btn-warning btn-sm">Editar</button>
+                              <button class="btn btn-danger btn-sm">Excluir</button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>3</td>
+                          <td>Min Yoon-gi</td>
+                          <td>SUGA</td>
+                          <td>09/03/1993</td>
+                          <td>Rapper</td>
+                          <td>
+                              <button class="btn btn-warning btn-sm">Editar</button>
+                              <button class="btn btn-danger btn-sm">Excluir</button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>4</td>
+                          <td>Jeon Jung-kook</td>
+                          <td>Jungkook</td>
+                          <td>01/09/1997</td>
+                          <td>Vocalista Principal / Maknae</td>
+                          <td>
+                              <button class="btn btn-warning btn-sm">Editar</button>
+                              <button class="btn btn-danger btn-sm">Excluir</button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
   </div>
-</div>
-
-
-<script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
