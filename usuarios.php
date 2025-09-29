@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "arquivo";
+$db   = "pacientes";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -30,11 +30,11 @@ switch ($method) {
             $pesquisa = "%" . $_GET['pesquisa'] . "%";
 
            
-            $stmt = $conn->prepare("SELECT ID, Login, Nome, Email, Ativo FROM usuarios WHERE Login LIKE ? OR Nome LIKE ? ORDER BY Nome ASC");
-            $stmt->bind_param("ss", $pesquisa, $pesquisa);
+            $stmt = $conn->prepare("SELECT ID, telefone, Nome, Email, Ativo FROM pacientes WHERE  Nome LIKE ? ORDER BY Nome ASC");
+            $stmt->bind_param("ss", $pesquisa);
         } else {
          
-            $stmt = $conn->prepare("SELECT ID, Login, Nome, Email, Ativo FROM usuarios ORDER BY ID DESC");
+            $stmt = $conn->prepare("SELECT ID, telefone, Nome, Email, Ativo FROM pacientes ORDER BY ID DESC");
         }
         
         $stmt->execute();
@@ -51,36 +51,26 @@ switch ($method) {
     case 'POST':
         $data = json_decode(file_get_contents("php://input"), true);
         
-        $senha_hash = password_hash($data['Senha'], PASSWORD_DEFAULT);
+       
 
-        $stmt = $conn->prepare("INSERT INTO usuarios (Login, Nome, Email, Senha, Ativo) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssi", $data['Login'], $data['Nome'], $data['Email'], $senha_hash, $data['Ativo']);
+        $stmt = $conn->prepare("INSERT INTO pacientes (telefone, Nome, Email,  Ativo) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssi", $data['telefone'], $data['Nome'], $data['Email'], $data['Ativo']);
         $stmt->execute();
 
         echo json_encode(["status" => "ok", "message" => "Usuário criado com sucesso!", "insert_id" => $stmt->insert_id]);
         break;
 
     case 'PUT':
-        $data = json_decode(file_get_contents("php://input"), true);
+        $data = json_decode(file_get_contents("php//input"), true);
         
    
-        if (!empty($data['Senha'])) {
-            $senha_hash = password_hash($data['Senha'], PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("UPDATE usuarios SET Login=?, Nome=?, Email=?, Senha=?, Ativo=? WHERE ID=?");
-            $stmt->bind_param("ssssii", $data['Login'], $data['Nome'], $data['Email'], $senha_hash, $data['Ativo'], $data['ID']);
-        } else {
-     
-            $stmt = $conn->prepare("UPDATE usuarios SET Login=?, Nome=?, Email=?, Ativo=? WHERE ID=?");
-            $stmt->bind_param("sssii", $data['Login'], $data['Nome'], $data['Email'], $data['Ativo'], $data['ID']);
-        }
-        $stmt->execute();
 
         echo json_encode(["status" => "ok", "message" => "Usuário atualizado com sucesso!"]);
         break;
 
     case 'DELETE':
         $id = $_GET['id'];
-        $stmt = $conn->prepare("DELETE FROM usuarios WHERE ID=?");
+        $stmt = $conn->prepare("DELETE FROM pacientes WHERE ID=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
 
